@@ -25,6 +25,7 @@ class ImagePart(Part):
     An image part, generally having a partname matching the regex
     ``ppt/media/image[1-9][0-9]*.*``.
     """
+
     def __init__(self, partname, content_type, blob, package, filename=None):
         super(ImagePart, self).__init__(
             partname, content_type, blob, package
@@ -145,6 +146,7 @@ class Image(object):
     """
     Immutable value object representing an image such as a JPEG, PNG, or GIF.
     """
+
     def __init__(self, blob, filename):
         super(Image, self).__init__()
         self._blob = blob
@@ -235,8 +237,9 @@ class Image(object):
         been used in its filename, if any.
         """
         ext_map = {
-            'BMP': 'bmp', 'GIF': 'gif', 'JPEG': 'jpg', 'PNG': 'png',
-            'TIFF': 'tiff', 'WMF': 'wmf'
+            'BMP': 'bmp',  'EPS': 'eps', 'GIF': 'gif',
+            'JPEG': 'jpg', 'PNG': 'png', 'TIFF': 'tiff',
+            'WMF': 'wmf', 'PDF': 'pdf', 'PSD': 'psd'
         }
         format = self._format
         if format not in ext_map:

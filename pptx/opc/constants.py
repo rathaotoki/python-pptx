@@ -46,6 +46,9 @@ class CONTENT_TYPE(object):
         'application/vnd.openxmlformats-officedocument.drawingml.diagramStyl'
         'e+xml'
     )
+    EPS = (
+        'application/postscript'
+    )
     GIF = (
         'image/gif'
     )
@@ -125,6 +128,9 @@ class CONTENT_TYPE(object):
     OPC_RELATIONSHIPS = (
         'application/vnd.openxmlformats-package.relationships+xml'
     )
+    PDF = (
+        'application/pdf'
+    )
     PML_COMMENTS = (
         'application/vnd.openxmlformats-officedocument.presentationml.commen'
         'ts+xml'
@@ -198,6 +204,9 @@ class CONTENT_TYPE(object):
     )
     PNG = (
         'image/png'
+    )
+    PSD = (
+        'image/x-photoshop'
     )
     SML_CALC_CHAIN = (
         'application/vnd.openxmlformats-officedocument.spreadsheetml.calcCha'

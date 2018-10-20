@@ -46,4 +46,6 @@ image_content_types = {
     'tiff': CT.TIFF,
     'wdp':  CT.MS_PHOTO,
     'wmf':  CT.X_WMF,
+    'eps':  CT.EPS,
+    'pdf':  CT.PDF
 }
