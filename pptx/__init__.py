@@ -44,6 +44,8 @@ content_type_to_part_class_map = {
     CT.TIFF:                  ImagePart,
     CT.X_EMF:                 ImagePart,
     CT.X_WMF:                 ImagePart,
+    CT.EPS:                   ImagePart,
+    CT.PDF:                   ImagePart,
     CT.ASF:                   MediaPart,
     CT.AVI:                   MediaPart,
     CT.MOV:                   MediaPart,

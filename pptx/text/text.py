@@ -243,7 +243,7 @@ class TextFrame(Subshape):
             self._parent.height - self.margin_top - self.margin_bottom
         )
 
-    def _set_font(self, family, size, bold, italic):
+    def _set_font(self, family, size, bold, italic, subs, supers, cancel):
         """
         Set the font properties of all the text in this text frame to
         *family*, *size*, *bold*, and *italic*.
@@ -255,13 +255,13 @@ class TextFrame(Subshape):
                 # generate a:endParaRPr for each <a:p> element
                 yield p.get_or_add_endParaRPr()
 
-        def set_rPr_font(rPr, name, size, bold, italic):
+        def set_rPr_font(rPr, name, size, bold, italic, subs, supers, cancel):
             f = Font(rPr)
-            f.name, f.size, f.bold, f.italic = family, Pt(size), bold, italic
+            f.name, f.size, f.bold, f.italic, f.subscript, f.superscript = family, Pt(size), bold, italic, subs, supers
 
         txBody = self._element
         for rPr in iter_rPrs(txBody):
-            set_rPr_font(rPr, family, size, bold, italic)
+            set_rPr_font(rPr, family, size, bold, italic, subs, supers, cancel)
 
 
 class Font(object):
@@ -418,7 +418,46 @@ class Font(object):
         elif value is False:
             value = MSO_UNDERLINE.NONE
         self._element.u = value
+    
+    @property
+    def subscript(self):
+        """
+        Read/Write |True|, |False|, |None|, or baseline integer.
+        default: True -> -25000, else normal font.
+        """
+        baseline = self._rPr.baseline
+        if baseline < 0:
+            return True
+        else:
+            return False
+    
+    @subscript.setter
+    def subscript(self, value):
+        if value is True:
+            value = -25000
+        elif value in {False, None}:
+            value = 0
+        self._rPr.baseline = value
 
+    @property
+    def superscript(self):
+        """
+        Read/Write |True|, |False|, |None|, or baseline integer.
+        default: True -> 30000, else normal font.
+        """
+        baseline = self._rPr.baseline
+        if baseline > 0:
+            return True
+        else:
+            return False
+    
+    @superscript.setter
+    def superscript(self, value):
+        if value is True:
+            value = 30000
+        elif value in {False, None}:
+            value = 0
+        self._rPr.baseline = value
 
 class _Hyperlink(Subshape):
     """
