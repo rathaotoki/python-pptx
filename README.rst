@@ -1,3 +1,8 @@
+This is a fork of python-pptx.
+
+This supports EPS for images (from Pillow) and Super/Subscripts for text (pptx file format).
+(Temporary, this fork accepts pdf file as image but Pillow does not work, take care.)
+
 .. image:: https://travis-ci.org/scanny/python-pptx.svg?branch=master
    :target: https://travis-ci.org/scanny/python-pptx
 
